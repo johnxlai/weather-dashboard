@@ -1,0 +1,92 @@
+/* Resets the box size of every element */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Gives the body element a parent height to compare against */
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  line-height: 1;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1.4rem;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3.5rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+h4 {
+  font-size: 2.5rem;
+}
+
+h5 {
+  font-size: 2rem;
+}
+
+h6 {
+  font-size: 1.5rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+/* Matches the font of special elements to the rest of the page */
+input,
+select,
+option,
+optgroup,
+textarea,
+button,
+pre,
+code {
+  font-size: 100%;
+  font-family: inherit;
+}
+
+/* Removes default bullet points from lists */
+ol,
+ul {
+  list-style: none;
+}
+
+/* Extra small devices (phones, 600px and down) */
+/* @media screen and (min-width: 600px) {
+} */
+/* Medium devices (landscape tablets, 768px and up) */
+/* @media screen and (min-width: 768px) {
+} */
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media screen and (min-width: 992px) {
+} */
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media screen and (min-width: 1200px) {
+} */ /*# sourceMappingURL=style.css.map */
