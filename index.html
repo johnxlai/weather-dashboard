@@ -13,17 +13,40 @@
     <link rel="stylesheet" href="./assets/css/style.min.css" />
     <title>Weather Dashboard</title>
   </head>
-  <body>
-    <header class="bg-blue-900 text-white flex p-12 justify-center">
+  <body class="bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 p-7">
+    <header class="text-white flex p-12 justify-center">
       <h1 class="text-4xl font-bold">Weather Dashboard</h1>
     </header>
 
-    <main class="bg-indigo-600">
-      <div class="grid grid-cols-4 gap-4">
-        <div>01</div>
-        <!-- ... -->
-        <div>09</div>
-      </div>
+    <main class="grid grid-cols-4 gap-4">
+      <aside title="search-city bg-cyan-900 col-span-1">
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="search-for-city">
+              Search For a city:
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="search-for-city"
+              type="text"
+              placeholder="Toronto" />
+          </div>
+          <div class="flex items-center justify-between">
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline grow"
+              type="buttonblock	">
+              Search
+            </button>
+          </div>
+        </form>
+      </aside>
+      <section
+        title="results"
+        class="col-span-3 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="">01</div>
+      </section>
     </main>
     <footer></footer>
 
