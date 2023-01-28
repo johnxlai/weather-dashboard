@@ -28,13 +28,13 @@ function displaySearchHistory() {
 
   storedHistory.forEach((city) => {
     console.log(city);
-  });
-  let cityName = `
-  <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline grow" type="buttonblock	">
-            CITY NAME
+    let cityBtn = `
+  <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold mb-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline grow" type="buttonblock">
+           ${city.cityName}
     </button>`;
 
-  searchHistoryEl.innerHTML = cityName;
+    searchHistoryEl.innerHTML += cityBtn;
+  });
 }
 
 //add to local storage
@@ -49,6 +49,9 @@ function addToLocalStorage(cityName) {
 
   //update local storage
   localStorage.setItem('searchHistory', JSON.stringify(storedHistory));
+
+  //Add Btns to display
+  displaySearchHistory();
 }
 
 // Create fetch to get data from open weather api
