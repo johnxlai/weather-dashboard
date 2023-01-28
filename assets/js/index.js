@@ -64,18 +64,25 @@ function addToLocalStorage(cityName) {
   //Add Btns to display
   displaySearchHistory();
 }
+//test for now
+getWeatherResults();
 
 // Create fetch to get data from open weather api
 function getWeatherResults(cityName) {
   const apiKey = `7685af939741ca4a014b811700246193`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
+  // let apiTest = https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}.
+
+  // testing for now
+  cityName = 'Toronto';
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&cnt=5&appid=${apiKey}`;
 
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          weatherResultsEl.innerHTML = JSON.stringify(data);
-          console.log(data);
+          JSON.stringify(data);
+          displayWeatherResults(data);
         });
       } else {
         alert(
@@ -89,6 +96,17 @@ function getWeatherResults(cityName) {
 }
 
 // display first 6 results
+function displayWeatherResults(data) {
+  const fiveDays = data.list;
+  console.log(fiveDays);
+  weatherResultsEl.firstElementChild.innerHTML = `<h1>${fiveDays[0].weather[0].icon}.png</h1>
+  <img src="http://openweathermap.org/img/wn/${fiveDays[0].weather[0].icon}.png" alt="" />
+  `;
+  // console.log(());
+  fiveDays.forEach((day) => {
+    // weatherResultsEl.firstChild.innerHTML += 'test';
+  });
+}
 
 // Grab city name THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
 
