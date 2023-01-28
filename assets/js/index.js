@@ -73,9 +73,13 @@ function getWeatherResults(cityName) {
   // let apiTest = https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}.
 
   // testing for now
-  cityName = 'Toronto';
+  // cityName = 'Toronto';
+  // let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&cnt=5&appid=${apiKey}`;
 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&cnt=5&appid=${apiKey}`;
+  let lat = 33.44;
+  let lon = -94.04;
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&exclude=hourly&cnt=5&appid=${apiKey}`;
 
   fetch(apiUrl)
     .then(function (response) {
