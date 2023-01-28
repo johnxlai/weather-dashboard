@@ -1,6 +1,7 @@
 //Selectors
 const input = document.getElementById('js-input-val');
 const form = document.getElementById('js-search-form');
+const searchHistoryEl = document.getElementById('js-search-history');
 
 //Global Vars
 
@@ -17,14 +18,26 @@ function grabUserInput(e) {
 
   inputValue = input.value;
   console.log(inputValue);
+
   input.value = '';
 }
 
 // Display local storage to show history of cities names
 function displaySearchHistory() {
   let storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+  let cityName = `
+  <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline grow" type="buttonblock	">
+            CITY NAME
+    </button>`;
+
+  searchHistoryEl.innerHTML = cityName;
 }
 
+//add to local storage
+function addToLocalStorage() {
+  let storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+}
 //set local storage
 function setLocalStorage() {
   localStorage.setItem('searchHistory', JSON.stringify(storedHistory));
@@ -41,6 +54,9 @@ function setLocalStorage() {
 // add event listener to form to grab input value
 form.addEventListener('submit', grabUserInput);
 
-function init() {}
+function init() {
+  //Show Search History
+  displaySearchHistory();
+}
 
 init();
