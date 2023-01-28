@@ -132,34 +132,29 @@ function getWeatherResults(cityData) {
 
 //data returns 5 days every 3 hours which equals to 40 items in the obj (5 * 24/h / 3hr = 40)
 function reduceToFiveDays(data) {
+  //this arr returns 40
   const fiveDaysRaw = data.list;
-  // console.log(fiveDaysRaw);
-  // const fiveDayFilter = fiveDaysRaw
-  console.log(fiveDaysRaw[0].dt_txt);
-  console.log(fiveDaysRaw[8].dt_txt);
-  console.log(fiveDaysRaw[16].dt_txt);
-  console.log(fiveDaysRaw[24].dt_txt);
-  console.log(fiveDaysRaw[32].dt_txt);
+  // init empty arr
+  let reducedFiveDays = [];
 
+  //In order to get a daily value - get every 8 element
   for (let i = 0; i < fiveDaysRaw.length; i += 8) {
-    console.log(fiveDaysRaw[i].dt_txt);
+    //Add to new array;
+    reducedFiveDays.push(fiveDaysRaw[i]);
   }
-
-  let newArr = fiveDaysRaw.filter(function (day, index) {
-    return index % 8 == 0;
-  });
-  console.log(newArr);
+  displayWeatherResults(reducedFiveDays);
 }
-// display first 6 results
-function displayWeatherResults(data) {
-  const fiveDays = data.list;
+//
+function displayWeatherResults(fiveDays) {
+  console.log(fiveDays);
   // console.log(fiveDays);
-  weatherResultsEl.firstElementChild.innerHTML = `<h1>${fiveDays[0].weather[0].icon}.png</h1>
-  <img src="http://openweathermap.org/img/wn/${fiveDays[0].weather[0].icon}.png" alt="" />
-  `;
-  // console.log(());
+
+  // // console.log(());
   fiveDays.forEach((day) => {
-    // weatherResultsEl.firstChild.innerHTML += 'test';
+    console.log(day.dt_txt);
+    weatherResultsEl.firstElementChild.innerHTML += `<h1>${day.weather[0].icon}.png</h1>
+    <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}.png" alt="" />
+    `;
   });
 }
 
