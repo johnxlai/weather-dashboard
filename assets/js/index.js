@@ -19,7 +19,7 @@ function grabUserInput(e) {
   //grab user into and store to local storage
   userCity = input.value;
   addToLocalStorage(userCity);
-
+  getWeatherResults(userCity);
   // empty input value
   input.value = '';
 }
@@ -65,6 +65,24 @@ function addToLocalStorage(cityName) {
 }
 
 // Create fetch to get data from open weather api
+function getWeatherResults(cityName) {
+  const apiKey = `7685af939741ca4a014b811700246193`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
+
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log(data);
+        });
+      } else {
+        alert('Error: ' + response.statusText);
+      }
+    })
+    .catch(function (error) {
+      alert('Unable to get weather info');
+    });
+}
 
 // display first 6 results
 
