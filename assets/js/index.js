@@ -5,6 +5,7 @@ const searchHistoryEl = document.getElementById('js-search-history');
 const weatherResultsEl = document.getElementById('js-weather-results');
 
 //Global Vars
+const apiKey = `7685af939741ca4a014b811700246193`;
 
 // Create a input to take user city - if field empty checks
 function grabUserInput(e) {
@@ -21,6 +22,7 @@ function grabUserInput(e) {
   userCity = input.value;
   addToLocalStorage(userCity);
   getWeatherResults(userCity);
+  // getCoordinates(userCity);
   // empty input value
   input.value = '';
 }
@@ -64,12 +66,37 @@ function addToLocalStorage(cityName) {
   //Add Btns to display
   displaySearchHistory();
 }
+
+getCoordinates('Toronto');
+function getCoordinates(cityName) {
+  let countryCode = 'CA';
+
+  let apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName},${countryCode}&limit=1&appid=${apiKey}`;
+
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          JSON.stringify(data);
+          console.log(data);
+          getWeatherResults(data);
+        });
+      } else {
+        alert(
+          'Error: ' + response.statusText + '\nPlease enter a vaild city name'
+        );
+      }
+    })
+    .catch(function (error) {
+      alert('Unable to get weather info');
+    });
+}
+
 //test for now
-getWeatherResults();
+// getWeatherResults();
 
 // Create fetch to get data from open weather api
 function getWeatherResults(cityName) {
-  const apiKey = `7685af939741ca4a014b811700246193`;
   // let apiTest = https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}.
 
   // testing for now
@@ -79,7 +106,7 @@ function getWeatherResults(cityName) {
   let lat = 33.44;
   let lon = -94.04;
 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&exclude=hourly&cnt=5&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=5&appid=${apiKey}`;
 
   fetch(apiUrl)
     .then(function (response) {
