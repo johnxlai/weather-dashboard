@@ -16,16 +16,19 @@ function grabUserInput(e) {
     return;
   }
 
-  inputValue = input.value;
-  console.log(inputValue);
+  userCity = input.value;
+  addToLocalStorage(userCity);
 
-  input.value = '';
+  // input.value = '';
 }
 
 // Display local storage to show history of cities names
 function displaySearchHistory() {
   let storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
+  storedHistory.forEach((city) => {
+    console.log(city);
+  });
   let cityName = `
   <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline grow" type="buttonblock	">
             CITY NAME
@@ -35,11 +38,16 @@ function displaySearchHistory() {
 }
 
 //add to local storage
-function addToLocalStorage() {
+function addToLocalStorage(cityName) {
   let storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
-}
-//set local storage
-function setLocalStorage() {
+
+  let newCity = {
+    cityName,
+  };
+
+  storedHistory.push(newCity);
+
+  //update local storage
   localStorage.setItem('searchHistory', JSON.stringify(storedHistory));
 }
 
