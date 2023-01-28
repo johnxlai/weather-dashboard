@@ -140,9 +140,15 @@ function reduceToFiveDays(data) {
   console.log(fiveDaysRaw[16].dt_txt);
   console.log(fiveDaysRaw[24].dt_txt);
   console.log(fiveDaysRaw[32].dt_txt);
-  // for (let i = 0; i < fiveDaysRaw.length; i + 8) {
-  //   // console.log(fiveDaysRaw[i]);
-  // }
+
+  for (let i = 0; i < fiveDaysRaw.length; i += 8) {
+    console.log(fiveDaysRaw[i].dt_txt);
+  }
+
+  let newArr = fiveDaysRaw.filter(function (day, index) {
+    return index % 8 == 0;
+  });
+  console.log(newArr);
 }
 // display first 6 results
 function displayWeatherResults(data) {
