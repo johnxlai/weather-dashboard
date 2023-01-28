@@ -2,6 +2,7 @@
 const input = document.getElementById('js-input-val');
 const form = document.getElementById('js-search-form');
 const searchHistoryEl = document.getElementById('js-search-history');
+const weatherResultsEl = document.getElementById('js-weather-results');
 
 //Global Vars
 
@@ -73,10 +74,13 @@ function getWeatherResults(cityName) {
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
+          weatherResultsEl.innerHTML = JSON.stringify(data);
           console.log(data);
         });
       } else {
-        alert('Error: ' + response.statusText);
+        alert(
+          'Error: ' + response.statusText + '\nPlease enter a vaild city name'
+        );
       }
     })
     .catch(function (error) {
