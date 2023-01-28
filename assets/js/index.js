@@ -16,16 +16,20 @@ function grabUserInput(e) {
     return;
   }
 
+  //grab user into and store to local storage
   userCity = input.value;
   addToLocalStorage(userCity);
 
-  // input.value = '';
+  // empty input value
+  input.value = '';
 }
 
 // Display local storage to show history of cities names
 function displaySearchHistory() {
+  //Set var to the parsed json, if it is empty add empty array.
   let storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
+  //Loop thru in city to create btn
   storedHistory.forEach((city) => {
     console.log(city);
     let cityBtn = `
@@ -33,6 +37,7 @@ function displaySearchHistory() {
            ${city.cityName}
     </button>`;
 
+    //add btns to html
     searchHistoryEl.innerHTML += cityBtn;
   });
 }
@@ -41,6 +46,7 @@ function displaySearchHistory() {
 function addToLocalStorage(cityName) {
   let storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
+  //Add new city to the obj
   let newCity = {
     cityName,
   };
