@@ -91,12 +91,15 @@ function getCoordinates(cityName) {
     });
 }
 
+function getTodaysWeather() {
+  // https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={API key}
+}
 //test for now
 // getWeatherResults();
 
 // Create fetch to get data from open weather api
 function getWeatherResults(cityData) {
-  console.log(cityData[0]);
+  // console.log(cityData[0]);
   // let apiTest = https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}.
 
   // testing for now
@@ -106,14 +109,15 @@ function getWeatherResults(cityData) {
   let lat = cityData[0].lat;
   let lon = cityData[0].lon;
 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=5&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
           JSON.stringify(data);
-          displayWeatherResults(data);
+          // displayWeatherResults(data);
+          reduceToFiveDays(data);
         });
       } else {
         alert(
@@ -126,10 +130,24 @@ function getWeatherResults(cityData) {
     });
 }
 
+//data returns 5 days every 3 hours which equals to 40 items in the obj (5 * 24/h / 3hr = 40)
+function reduceToFiveDays(data) {
+  const fiveDaysRaw = data.list;
+  // console.log(fiveDaysRaw);
+  // const fiveDayFilter = fiveDaysRaw
+  console.log(fiveDaysRaw[0].dt_txt);
+  console.log(fiveDaysRaw[8].dt_txt);
+  console.log(fiveDaysRaw[16].dt_txt);
+  console.log(fiveDaysRaw[24].dt_txt);
+  console.log(fiveDaysRaw[32].dt_txt);
+  // for (let i = 0; i < fiveDaysRaw.length; i + 8) {
+  //   // console.log(fiveDaysRaw[i]);
+  // }
+}
 // display first 6 results
 function displayWeatherResults(data) {
   const fiveDays = data.list;
-  console.log(fiveDays);
+  // console.log(fiveDays);
   weatherResultsEl.firstElementChild.innerHTML = `<h1>${fiveDays[0].weather[0].icon}.png</h1>
   <img src="http://openweathermap.org/img/wn/${fiveDays[0].weather[0].icon}.png" alt="" />
   `;
