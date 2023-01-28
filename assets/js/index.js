@@ -78,7 +78,6 @@ function getCoordinates(cityName) {
       if (response.ok) {
         response.json().then(function (data) {
           JSON.stringify(data);
-          console.log(data);
           getWeatherResults(data);
         });
       } else {
@@ -96,15 +95,16 @@ function getCoordinates(cityName) {
 // getWeatherResults();
 
 // Create fetch to get data from open weather api
-function getWeatherResults(cityName) {
+function getWeatherResults(cityData) {
+  console.log(cityData[0]);
   // let apiTest = https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}.
 
   // testing for now
   // cityName = 'Toronto';
   // let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&cnt=5&appid=${apiKey}`;
 
-  let lat = 33.44;
-  let lon = -94.04;
+  let lat = cityData[0].lat;
+  let lon = cityData[0].lon;
 
   let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=5&appid=${apiKey}`;
 
