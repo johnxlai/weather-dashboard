@@ -1,6 +1,16 @@
+//Selectors
+const input = document.getElementById('js-input-val');
+const form = document.getElementById('js-search-form');
+
 // Create a input to take user city - if field empty checks
+function grabUserInput(e) {
+  //Remove default form submission
+  e.preventDefault();
+  console.log(this.classList.contains('#js-input-val'));
+}
 
 // add event listener to form to grab input value
+form.addEventListener('submit', grabUserInput);
 
 // Local storage to show history of cities names
 

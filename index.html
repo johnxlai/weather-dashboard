@@ -20,7 +20,9 @@
 
     <main class="grid grid-cols-1 lg:grid-cols-4 gap-4">
       <aside title="search-city bg-cyan-900 col-span-full lg:col-span-1">
-        <form class="bg-white shadow-md rounded-t px-8 pt-6 pb-8">
+        <form
+          id="js-search-form"
+          class="bg-white shadow-md rounded-t px-8 pt-6 pb-8">
           <div class="mb-4">
             <label
               class="block text-gray-700 text-sm font-bold mb-2"
@@ -28,13 +30,14 @@
               Search For a city:
             </label>
             <input
+              id="js-input-val"
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="search-for-city"
               type="text"
               placeholder="Toronto" />
           </div>
           <div class="flex items-center justify-between">
             <button
+              id="js-submit-btn"
               class="bg-gradient-to-t from-indigo-500 to-slate-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline grow"
               type="buttonblock	">
               Search
