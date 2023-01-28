@@ -11,23 +11,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="./assets/css/style.min.css" />
-    <title>John Lai's Boilerplate</title>
+    <title>Weather Dashboard</title>
   </head>
   <body>
-    <header>
-      <h1 class="text-3xl font-bold underline">Hello world!</h1>
+    <header class="bg-blue-900 text-white flex p-12 justify-center">
+      <h1 class="text-4xl font-bold">Weather Dashboard</h1>
     </header>
 
-    <blockquote
-      class="text-2xl font-semibold italic text-center text-slate-900">
-      When you look
-      <span
-        class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-green-500 relative inline-block">
-        <span class="relative text-white">annoyed</span>
-      </span>
-      all the time, people think that you're busy.
-    </blockquote>
-    <main></main>
+    <main class="bg-indigo-600">
+      <div class="grid grid-cols-4 gap-4">
+        <div>01</div>
+        <!-- ... -->
+        <div>09</div>
+      </div>
+    </main>
     <footer></footer>
 
     <!-- Optional JavaScript -->
