@@ -1,3 +1,5 @@
+console.log(new Date().toLocaleDateString());
+
 //Selectors
 const input = document.getElementById('js-input-val');
 const form = document.getElementById('js-search-form');
@@ -22,8 +24,6 @@ function grabUserInput(e) {
   //grab user into and store to local storage
   userCity = input.value.toLowerCase();
 
-  //Add to local Storage obj
-  addToLocalStorage(userCity);
   //Fetch current weather using city name
   getCurrentWeather(userCity);
   //Get Lat and Long to use for another api fetch url
@@ -93,6 +93,8 @@ function getCurrentWeather(cityName) {
         response.json().then(function (data) {
           JSON.stringify(data);
           displayCurrentDay(data);
+          //Add to local Storage obj
+          addToLocalStorage(userCity);
         });
       } else {
         //if it is a unsuccessful response
@@ -119,7 +121,6 @@ function getWeatherForNext5Days(cityData) {
       if (response.ok) {
         response.json().then(function (data) {
           JSON.stringify(data);
-          // displayNextFiveDays(data);
           reduceToFiveDays(data);
         });
       } else {
@@ -174,7 +175,6 @@ function displaySearchHistory() {
 
 //display todays weather details
 function displayCurrentDay(today) {
-  console.log(today);
   //display today's day with vanilla js and breaking down obj to show details
   weatherResultsEl.firstElementChild.innerHTML = `
     <h1 class="font-bold">${today.name} ${new Date().toLocaleDateString()} </h1>
