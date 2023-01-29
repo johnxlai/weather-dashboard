@@ -3,6 +3,7 @@ const input = document.getElementById('js-input-val');
 const form = document.getElementById('js-search-form');
 const searchHistoryEl = document.getElementById('js-search-history');
 const weatherResultsEl = document.getElementById('js-weather-results');
+const daysForecastEl = document.getElementById('js-5days-forecast');
 
 //Global Vars
 const apiKey = `7685af939741ca4a014b811700246193`;
@@ -153,7 +154,7 @@ function reduceToFiveDays(data) {
     //Add to new array;
     reducedFiveDays.push(fiveDaysRaw[i]);
   }
-  // displayWeatherResults(reducedFiveDays);
+  displayWeatherResults(reducedFiveDays);
 }
 
 function displayCurrentDay(today) {
@@ -170,16 +171,18 @@ function displayCurrentDay(today) {
 }
 //
 function displayWeatherResults(fiveDays) {
-  console.log(fiveDays);
-  // console.log(fiveDays);
-
-  // // console.log(());
+  let card = '';
   fiveDays.forEach((day) => {
     console.log(day.dt_txt);
-    weatherResultsEl.firstElementChild.innerHTML += `<h1>${day.weather[0].icon}.png</h1>
-    <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}.png" alt="" />
+    card += `
+     <div class="bg-white col-span-2">
+      <h1>${day.weather[0].icon}.png</h1>
+      <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}.png" alt="" />
+     </div>
     `;
   });
+  //Append all 5 days to html container
+  daysForecastEl.innerHTML = card;
 }
 
 // Grab city name THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
