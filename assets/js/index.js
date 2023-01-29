@@ -41,8 +41,6 @@ function addToLocalStorage(cityName) {
     cityName,
   };
 
-  // console.log(storedHistory);
-  // console.log(storedHistory.find((el) => Object.keys(el === newCity.cityName)));
   //DONT ADD existing items
 
   storedHistory.push(newCity);
@@ -54,6 +52,7 @@ function addToLocalStorage(cityName) {
   displaySearchHistory();
 }
 
+///////// Get Information Functions ////////////
 // Convert User's city name to coordinates for latitude and longitude
 function getCoordinates(cityName) {
   let apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
@@ -64,7 +63,7 @@ function getCoordinates(cityName) {
       if (response.ok) {
         response.json().then(function (data) {
           JSON.stringify(data);
-          getWeatherResults(data);
+          getWeatherForNext5Days(data);
         });
       } else {
         //if it is a unsuccessful response
@@ -102,11 +101,9 @@ function getCurrentWeather(cityName) {
       alert('Unable to get weather info');
     });
 }
-//test for now
-// getWeatherResults();
 
-// Create fetch to get data from open weather api
-function getWeatherResults(cityData) {
+// get Weather for 5 Days
+function getWeatherForNext5Days(cityData) {
   let lat = cityData[0].lat;
   let lon = cityData[0].lon;
 
