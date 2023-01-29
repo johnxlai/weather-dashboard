@@ -179,7 +179,7 @@ function displayCurrentDay(today) {
   weatherResultsEl.firstElementChild.innerHTML = `
     <h1 class="font-bold">${today.name} ${new Date().toLocaleDateString()} </h1>
     <p>Temp: ${today.main.temp}</p>
-    <p><img src="http://openweathermap.org/img/wn/${
+    <p><img src="https://openweathermap.org/img/wn/${
       today.weather[0].icon
     }.png" alt="Today's weather icon" />
     <p>Wind: ${today.wind.speed} MPH</p>
@@ -203,7 +203,7 @@ function displayNextFiveDays(fiveDays) {
       <p>Temp: ${day.main.temp}</p>
       <p>Wind: ${day.wind.speed} MPH</p>
       <p>Humidtiy: ${day.main.humidity} %</p>
-      <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}.png" alt="" />
+      <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}.png" alt="" />
      </div>
     `;
   });
