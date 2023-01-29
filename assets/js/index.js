@@ -163,7 +163,7 @@ function displaySearchHistory() {
   //Loop thru in city to create btn
   storedHistory.forEach((city) => {
     let cityBtn = `
-    <button data-city-name="${city.cityName}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold mb-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline grow capitalize"     type="buttonblock">
+    <button data-city-name="${city.cityName}" class="bg-blue-700 hover:bg-blue-600 text-white font-bold mb-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline grow capitalize"     type="buttonblock">
            ${city.cityName}
     </button>`;
 
