@@ -7,7 +7,6 @@ const daysForecastEl = document.getElementById('js-5days-forecast');
 
 //Global Vars
 const apiKey = `7685af939741ca4a014b811700246193`;
-let countryCode = 'CA';
 
 // Create a input to take user city - if field empty checks
 function grabUserInput(e) {
@@ -22,30 +21,15 @@ function grabUserInput(e) {
 
   //grab user into and store to local storage
   userCity = input.value;
+
+  //Add to local Storage obj
   addToLocalStorage(userCity);
+  //Fetch current weather using city name
   getCurrentWeather(userCity);
-  getWeatherResults(userCity);
-  // getCoordinates(userCity);
+  //Get Lat and Long to use for another api fetch url
+  getCoordinates(userCity);
   // empty input value
   input.value = '';
-}
-
-// Display local storage to show history of cities names
-function displaySearchHistory() {
-  //Set var to the parsed json, if it is empty add empty array.
-  let storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
-
-  //Loop thru in city to create btn
-  storedHistory.forEach((city) => {
-    console.log(city);
-    let cityBtn = `
-  <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold mb-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline grow" type="buttonblock">
-           ${city.cityName}
-    </button>`;
-
-    //add btns to html
-    searchHistoryEl.innerHTML += cityBtn;
-  });
 }
 
 //add to local storage
@@ -70,18 +54,21 @@ function addToLocalStorage(cityName) {
   displaySearchHistory();
 }
 
-getCoordinates('Toronto');
+// Convert User's city name to coordinates for latitude and longitude
 function getCoordinates(cityName) {
-  let apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName},${countryCode}&limit=1&appid=${apiKey}`;
+  let apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
 
   fetch(apiUrl)
     .then(function (response) {
+      //if response its success, convert it to json and pass the data to the next function
       if (response.ok) {
         response.json().then(function (data) {
           JSON.stringify(data);
           getWeatherResults(data);
         });
       } else {
+        //if it is a unsuccessful response
+
         alert(
           'Error: ' + response.statusText + '\nPlease enter a vaild city name'
         );
@@ -92,18 +79,20 @@ function getCoordinates(cityName) {
     });
 }
 
-getCurrentWeather('toronto');
+//get Today's Weather
 function getCurrentWeather(cityName) {
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${countryCode}&units=metric&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
 
   fetch(apiUrl)
     .then(function (response) {
+      //if response its success, convert it to json and pass the data to the next function
       if (response.ok) {
         response.json().then(function (data) {
           JSON.stringify(data);
           displayCurrentDay(data);
         });
       } else {
+        //if it is a unsuccessful response
         alert(
           'Error: ' + response.statusText + '\nPlease enter a vaild city name'
         );
@@ -125,6 +114,7 @@ function getWeatherResults(cityData) {
 
   fetch(apiUrl)
     .then(function (response) {
+      //if response its success, convert it to json and pass the data to the next function
       if (response.ok) {
         response.json().then(function (data) {
           JSON.stringify(data);
@@ -132,6 +122,7 @@ function getWeatherResults(cityData) {
           reduceToFiveDays(data);
         });
       } else {
+        //if it is a unsuccessful response
         alert(
           'Error: ' + response.statusText + '\nPlease enter a vaild city name'
         );
@@ -149,14 +140,37 @@ function reduceToFiveDays(data) {
   // init empty arr
   let reducedFiveDays = [];
 
-  //In order to get a daily value - get every 8 element
+  //In order to get a daily value - get every 8 element in the main array
   for (let i = 0; i < fiveDaysRaw.length; i += 8) {
-    //Add to new array;
+    //Add to item to the new array;
     reducedFiveDays.push(fiveDaysRaw[i]);
   }
+
+  //Display to dom
   displayWeatherResults(reducedFiveDays);
 }
 
+///////// DISPLAY FUNCTIONS ///////////////
+
+// Display local storage to show history of cities names
+function displaySearchHistory() {
+  //Set var to the parsed json, if it is empty add empty array.
+  let storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+  //Loop thru in city to create btn
+  storedHistory.forEach((city) => {
+    console.log(city);
+    let cityBtn = `
+  <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold mb-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline grow capitalize"     type="buttonblock">
+           ${city.cityName}
+    </button>`;
+
+    //add btns to html
+    searchHistoryEl.innerHTML += cityBtn;
+  });
+}
+
+//display todays weather details
 function displayCurrentDay(today) {
   //display today's day with vanilla js and breaking down obj to show details
   weatherResultsEl.firstElementChild.innerHTML = `
@@ -169,7 +183,8 @@ function displayCurrentDay(today) {
     <p>Humidity: ${today.main.humidity}%</p>
     `;
 }
-//
+
+//Display next five days weather
 function displayWeatherResults(fiveDays) {
   let card = '';
 
@@ -178,7 +193,7 @@ function displayWeatherResults(fiveDays) {
     let date = new Date(day.dt_txt.split(' ')[0]).toLocaleDateString();
 
     card += `
-     <div class="bg-white col-span-2">
+     <div class="bg-white col-span-2 p-3">
       <h1>${date}</h1>
       <p>Temp: ${day.main.temp}</p>
       <p>Wind: ${day.wind.speed} MPH</p>
@@ -190,10 +205,6 @@ function displayWeatherResults(fiveDays) {
   //Append all 5 days to html container
   daysForecastEl.innerHTML = card;
 }
-
-// Grab city name THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
-
-//5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
 
 // add event listener to form to grab input value
 form.addEventListener('submit', grabUserInput);
