@@ -121,7 +121,7 @@ function getWeatherResults(cityData) {
   let lat = cityData[0].lat;
   let lon = cityData[0].lon;
 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -172,11 +172,17 @@ function displayCurrentDay(today) {
 //
 function displayWeatherResults(fiveDays) {
   let card = '';
+
   fiveDays.forEach((day) => {
-    console.log(day.dt_txt);
+    //Use to locale date string to convert the object's date and remove time from returned string
+    let date = new Date(day.dt_txt.split(' ')[0]).toLocaleDateString();
+
     card += `
      <div class="bg-white col-span-2">
-      <h1>${day.weather[0].icon}.png</h1>
+      <h1>${date}</h1>
+      <p>Temp: ${day.main.temp}</p>
+      <p>Wind: ${day.wind.speed} MPH</p>
+      <p>Humidtiy: ${day.main.humidity} MPH</p>
       <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}.png" alt="" />
      </div>
     `;
