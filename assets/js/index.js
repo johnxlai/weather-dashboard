@@ -162,7 +162,7 @@ function displaySearchHistory() {
   //Loop thru in city to create btn
   storedHistory.forEach((city) => {
     let cityBtn = `
-    <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold mb-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline grow capitalize"     type="buttonblock">
+    <button data-city-name="${city.cityName}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold mb-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline grow capitalize"     type="buttonblock">
            ${city.cityName}
     </button>`;
 
@@ -207,8 +207,20 @@ function displayWeatherResults(fiveDays) {
   daysForecastEl.innerHTML = card;
 }
 
+function searchHistoryBtn(e) {
+  let historyCity = e.target.getAttribute('data-city-name');
+  if (historyCity) {
+    addToLocalStorage(historyCity);
+    //Fetch current weather using city name
+    getCurrentWeather(historyCity);
+    //Get Lat and Long to use for another api fetch url
+    getCoordinates(historyCity);
+  }
+}
+
 // add event listener to form to grab input value
 form.addEventListener('submit', grabUserInput);
+searchHistoryEl.addEventListener('click', searchHistoryBtn);
 
 function init() {
   //Show Search History
