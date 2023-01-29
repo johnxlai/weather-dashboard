@@ -88,7 +88,7 @@ ul {
 /* @media screen and (min-width: 1200px) {
 } */
 .bg-image {
-  background-image: url("/assets/image/weather-min.jpg");
+  background-image: url("../../../assets/image/weather-min.jpg");
   background-position: center;
 }
 

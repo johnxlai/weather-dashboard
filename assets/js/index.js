@@ -94,6 +94,7 @@ function getCurrentWeather(cityName) {
         response.json().then(function (data) {
           JSON.stringify(data);
           displayCurrentDay(data);
+
           //Add to local Storage obj
           addToLocalStorage(userCity);
         });
