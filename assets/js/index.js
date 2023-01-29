@@ -96,7 +96,7 @@ function getCurrentWeather(cityName) {
           displayCurrentDay(data);
 
           //Add to local Storage obj
-          addToLocalStorage(userCity);
+          addToLocalStorage(cityName);
         });
       } else {
         //if it is a unsuccessful response
