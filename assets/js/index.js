@@ -41,8 +41,14 @@ function addToLocalStorage(cityName) {
     cityName,
   };
 
-  // //DONT ADD existing items
-  storedHistory.push(newCity);
+  //if the city name is already in local storage dont allow to add it
+  const checkCityName = (storedHistory) =>
+    storedHistory.cityName === newCity.cityName;
+
+  //Use .some to check if city name does alrdy exist
+  if (!storedHistory.some(checkCityName)) {
+    storedHistory.push(newCity);
+  }
 
   //update local storage
   localStorage.setItem('searchHistory', JSON.stringify(storedHistory));
@@ -66,7 +72,6 @@ function getCoordinates(cityName) {
         });
       } else {
         //if it is a unsuccessful response
-
         alert(
           'Error: ' + response.statusText + '\nPlease enter a vaild city name'
         );
@@ -209,5 +214,4 @@ function init() {
   //Show Search History
   displaySearchHistory();
 }
-
 init();
