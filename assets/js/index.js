@@ -20,7 +20,7 @@ function grabUserInput(e) {
   }
 
   //grab user into and store to local storage
-  userCity = input.value;
+  userCity = input.value.toLowerCase();
 
   //Add to local Storage obj
   addToLocalStorage(userCity);
