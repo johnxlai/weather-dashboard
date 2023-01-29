@@ -119,7 +119,7 @@ function getWeatherForNext5Days(cityData) {
       if (response.ok) {
         response.json().then(function (data) {
           JSON.stringify(data);
-          // displayWeatherResults(data);
+          // displayNextFiveDays(data);
           reduceToFiveDays(data);
         });
       } else {
@@ -148,7 +148,7 @@ function reduceToFiveDays(data) {
   }
 
   //Display to dom
-  displayWeatherResults(reducedFiveDays);
+  displayNextFiveDays(reducedFiveDays);
 }
 
 ///////// DISPLAY FUNCTIONS ///////////////
@@ -174,6 +174,7 @@ function displaySearchHistory() {
 
 //display todays weather details
 function displayCurrentDay(today) {
+  console.log(today);
   //display today's day with vanilla js and breaking down obj to show details
   weatherResultsEl.firstElementChild.innerHTML = `
     <h1 class="font-bold">${today.name} ${new Date().toLocaleDateString()} </h1>
@@ -187,19 +188,21 @@ function displayCurrentDay(today) {
 }
 
 //Display next five days weather
-function displayWeatherResults(fiveDays) {
+function displayNextFiveDays(fiveDays) {
   let card = '';
 
   fiveDays.forEach((day) => {
     //Use to locale date string to convert the object's date and remove time from returned string
-    let date = new Date(day.dt_txt.split(' ')[0]).toLocaleDateString();
+    let date = new Date(day.dt_txt);
+    console.log(day.dt_txt);
+    console.log(fiveDays);
 
     card += `
      <div class="bg-white col-span-2 p-3">
       <h1>${date}</h1>
       <p>Temp: ${day.main.temp}</p>
       <p>Wind: ${day.wind.speed} MPH</p>
-      <p>Humidtiy: ${day.main.humidity} MPH</p>
+      <p>Humidtiy: ${day.main.humidity} %</p>
       <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}.png" alt="" />
      </div>
     `;
