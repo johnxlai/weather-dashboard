@@ -5,6 +5,7 @@ const input = document.getElementById('js-input-val');
 const form = document.getElementById('js-search-form');
 const searchHistoryEl = document.getElementById('js-search-history');
 const weatherResultsEl = document.getElementById('js-weather-results');
+const hidden5daysLabel = weatherResultsEl.querySelector('.hidden');
 const daysForecastEl = document.getElementById('js-5days-forecast');
 
 //Global Vars
@@ -208,6 +209,7 @@ function displayNextFiveDays(fiveDays) {
     `;
   });
   //Append all 5 days to html container
+  hidden5daysLabel.classList.remove('hidden');
   daysForecastEl.innerHTML = card;
 }
 

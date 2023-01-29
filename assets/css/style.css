@@ -89,6 +89,7 @@ ul {
 } */
 .bg-image {
   background-image: url("/assets/image/weather-min.jpg");
+  background-position: center;
 }
 
 @tailwind base;
