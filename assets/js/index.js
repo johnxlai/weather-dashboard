@@ -195,7 +195,6 @@ function displayNextFiveDays(fiveDays) {
     //Use to locale date string to convert the object's date and remove time from returned string
     let date = new Date(day.dt_txt);
     console.log(day.dt_txt);
-    console.log(fiveDays);
 
     card += `
      <div class="bg-white col-span-2 p-3">
