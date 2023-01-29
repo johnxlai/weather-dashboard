@@ -192,9 +192,10 @@ function displayNextFiveDays(fiveDays) {
   let card = '';
 
   fiveDays.forEach((day) => {
-    //Use to locale date string to convert the object's date and remove time from returned string
-    let date = new Date(day.dt_txt);
-    console.log(day.dt_txt);
+    //Remove time form day.dt_text, just grabbing the day
+    let date = day.dt_txt.split(' ')[0];
+    //Use Day.js to format date
+    date = dayjs(date).format('MM/DD/YYYY');
 
     card += `
      <div class="bg-white col-span-2 p-3">
