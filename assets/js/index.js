@@ -179,11 +179,12 @@ function displaySearchHistory() {
 function displayCurrentDay(today) {
   //display today's day with vanilla js and breaking down obj to show details
   weatherResultsEl.firstElementChild.innerHTML = `
-    <h1 class="font-bold">${today.name} ${new Date().toLocaleDateString()} </h1>
-    <p>Temp: ${today.main.temp}</p>
+    <h2>${new Date().toLocaleDateString()}</h2>
     <img src="https://openweathermap.org/img/wn/${
       today.weather[0].icon
     }.png" alt="Today's weather icon" />
+    <h3 class="font-bold text-2xl">${today.name}</h3>
+    <p>Temp: ${today.main.temp}</p>
     <p>Wind: ${today.wind.speed} MPH</p>
     <p>Humidity: ${today.main.humidity}%</p>
     `;
@@ -200,12 +201,12 @@ function displayNextFiveDays(fiveDays) {
     date = dayjs(date).format('MM/DD/YYYY');
 
     card += `
-     <div class="bg-indigo-700 text-white col-span-full md:col-span-3 lg:col-span-2 p-3 rounded">
-      <h1>${date}</h1>
+     <div class="bg-indigo-700 text-white col-span-full md:col-span-3 lg:col-span-1 p-3 rounded">
+      <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}.png" alt="" />
+      <h3>${date}</h3>
       <p>Temp: ${day.main.temp}</p>
       <p>Wind: ${day.wind.speed} MPH</p>
       <p>Humidtiy: ${day.main.humidity} %</p>
-      <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}.png" alt="" />
      </div>
     `;
   });
