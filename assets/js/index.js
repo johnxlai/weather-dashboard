@@ -6,6 +6,7 @@ const weatherResultsEl = document.getElementById('js-weather-results');
 
 //Global Vars
 const apiKey = `7685af939741ca4a014b811700246193`;
+let countryCode = 'CA';
 
 // Create a input to take user city - if field empty checks
 function grabUserInput(e) {
@@ -21,6 +22,7 @@ function grabUserInput(e) {
   //grab user into and store to local storage
   userCity = input.value;
   addToLocalStorage(userCity);
+  getCurrentWeather(userCity);
   getWeatherResults(userCity);
   // getCoordinates(userCity);
   // empty input value
@@ -69,8 +71,6 @@ function addToLocalStorage(cityName) {
 
 getCoordinates('Toronto');
 function getCoordinates(cityName) {
-  let countryCode = 'CA';
-
   let apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName},${countryCode}&limit=1&appid=${apiKey}`;
 
   fetch(apiUrl)
@@ -91,8 +91,26 @@ function getCoordinates(cityName) {
     });
 }
 
-function getTodaysWeather() {
-  // https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={API key}
+getCurrentWeather('toronto');
+function getCurrentWeather(cityName) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${countryCode}&appid=${apiKey}`;
+
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          JSON.stringify(data);
+          console.log(data);
+        });
+      } else {
+        alert(
+          'Error: ' + response.statusText + '\nPlease enter a vaild city name'
+        );
+      }
+    })
+    .catch(function (error) {
+      alert('Unable to get weather info');
+    });
 }
 //test for now
 // getWeatherResults();
