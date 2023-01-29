@@ -150,6 +150,7 @@ function reduceToFiveDays(data) {
 
 // Display local storage to show history of cities names
 function displaySearchHistory() {
+  searchHistoryEl.innerHTML = '';
   //Set var to the parsed json, if it is empty add empty array.
   let storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
