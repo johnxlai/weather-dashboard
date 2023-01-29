@@ -87,11 +87,6 @@ ul {
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 /* @media screen and (min-width: 1200px) {
 } */
-.bg-image {
-  background-image: url("../../../assets/image/weather-min.jpg");
-  background-position: center;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;/*# sourceMappingURL=style.css.map */

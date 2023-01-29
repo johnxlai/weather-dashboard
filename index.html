@@ -24,10 +24,10 @@
     <link rel="stylesheet" href="./assets/css/style.min.css" />
     <title>Weather Dashboard</title>
   </head>
-  <body class="bg-slate-600 p-6">
-    <header class="text-white flex p-12 justify-center">
+  <body class="bg-stone-900 p-6">
+    <!-- <header class="text-white flex p-12 justify-center">
       <h1 class="text-4xl font-bold">Weather Dashboard</h1>
-    </header>
+    </header> -->
 
     <main class="grid grid-cols-1 lg:grid-cols-4">
       <aside title="search-city bg-cyan-900 col-span-full lg:col-span-1">
@@ -49,7 +49,7 @@
           <div class="flex items-center justify-between">
             <button
               id="js-submit-btn"
-              class="bg-gradient-to-t from-indigo-500 to-slate-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline grow"
+              class="bg-indigo-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline grow"
               type="buttonblock	">
               Search
             </button>
@@ -57,19 +57,19 @@
         </form>
         <div
           id="js-search-history"
-          class="bg-indigo-800 lg:rounded-bl flex flex-col px-8 pt-6"></div>
+          class="bg-indigo-700 lg:rounded-bl flex flex-col px-8 pt-6"></div>
       </aside>
       <section
         id="js-weather-results"
         title="results"
-        class="bg-image lg:col-span-3 shadow-md rounded-b lg:rounded-r lg:rounded-l-none pb-8">
-        <div class="col-span-full text-white p-6"></div>
-        <div class="col-span-full py-2 hidden">
+        class="lg:col-span-3 bg-indigo-900 shadow-md rounded-b lg:rounded-r lg:rounded-l-none p-6">
+        <div class="col-span-full text-white"></div>
+        <div class="col-span-full py-2 my-4 hidden">
           <h6 class="p-3 inline bg-pink-500 text-white">5 Day Forecast</h6>
         </div>
         <div
           id="js-5days-forecast"
-          class="col-span-full py-2 grid grid-cols-6 gap-4"></div>
+          class="col-span-full grid grid-cols-6 gap-4"></div>
       </section>
     </main>
     <footer></footer>

@@ -166,7 +166,7 @@ function displaySearchHistory() {
   //Loop thru in city to create btn
   storedHistory.forEach((city) => {
     let cityBtn = `
-    <button data-city-name="${city.cityName}" class="bg-blue-700 hover:bg-blue-600 text-white font-bold mb-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline grow capitalize"     type="buttonblock">
+    <button data-city-name="${city.cityName}" class="bg-gray-700 hover:bg-blue-600 text-white font-bold mb-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline grow capitalize"     type="buttonblock">
            ${city.cityName}
     </button>`;
 
@@ -181,7 +181,7 @@ function displayCurrentDay(today) {
   weatherResultsEl.firstElementChild.innerHTML = `
     <h1 class="font-bold">${today.name} ${new Date().toLocaleDateString()} </h1>
     <p>Temp: ${today.main.temp}</p>
-    <p><img src="https://openweathermap.org/img/wn/${
+    <img src="https://openweathermap.org/img/wn/${
       today.weather[0].icon
     }.png" alt="Today's weather icon" />
     <p>Wind: ${today.wind.speed} MPH</p>
@@ -200,7 +200,7 @@ function displayNextFiveDays(fiveDays) {
     date = dayjs(date).format('MM/DD/YYYY');
 
     card += `
-     <div class="bg-white col-span-full md:col-span-3 lg:col-span-2 p-3">
+     <div class="bg-gray-700 text-white col-span-full md:col-span-3 lg:col-span-2 p-3">
       <h1>${date}</h1>
       <p>Temp: ${day.main.temp}</p>
       <p>Wind: ${day.wind.speed} MPH</p>
