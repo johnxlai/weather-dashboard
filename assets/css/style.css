@@ -5,9 +5,6 @@
   box-sizing: border-box;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 /* Gives the body element a parent height to compare against */
 html {
   height: 100%;
@@ -89,4 +86,11 @@ ul {
 } */
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 /* @media screen and (min-width: 1200px) {
-} */ /*# sourceMappingURL=style.css.map */
+} */
+.bg-image {
+  background-image: url("/assets/image/weather-min.jpg");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;/*# sourceMappingURL=style.css.map */

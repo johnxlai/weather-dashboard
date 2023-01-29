@@ -198,7 +198,7 @@ function displayNextFiveDays(fiveDays) {
     date = dayjs(date).format('MM/DD/YYYY');
 
     card += `
-     <div class="bg-white col-span-2 p-3">
+     <div class="bg-white col-span-full md:col-span-3 lg:col-span-2 p-3">
       <h1>${date}</h1>
       <p>Temp: ${day.main.temp}</p>
       <p>Wind: ${day.wind.speed} MPH</p>
