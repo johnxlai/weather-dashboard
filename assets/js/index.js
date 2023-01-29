@@ -93,7 +93,7 @@ function getCoordinates(cityName) {
 
 getCurrentWeather('toronto');
 function getCurrentWeather(cityName) {
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${countryCode}&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${countryCode}&units=metric&appid=${apiKey}`;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -153,11 +153,20 @@ function reduceToFiveDays(data) {
     //Add to new array;
     reducedFiveDays.push(fiveDaysRaw[i]);
   }
-  displayWeatherResults(reducedFiveDays);
+  // displayWeatherResults(reducedFiveDays);
 }
 
 function displayCurrentDay(today) {
-  console.log(today);
+  //display today's day with vanilla js and breaking down obj to show details
+  weatherResultsEl.firstElementChild.innerHTML = `
+    <h1 class="font-bold">${today.name} ${new Date().toLocaleDateString()} </h1>
+    <p>Temp: ${today.main.temp}</p>
+    <p><img src="http://openweathermap.org/img/wn/${
+      today.weather[0].icon
+    }.png" alt="Today's weather icon" />
+    <p>Wind: ${today.wind.speed} MPH</p>
+    <p>Humidity: ${today.main.humidity}%</p>
+    `;
 }
 //
 function displayWeatherResults(fiveDays) {
