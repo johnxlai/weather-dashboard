@@ -155,6 +155,7 @@ function reduceToFiveDays(data) {
 
 // Display local storage to show history of cities names
 function displaySearchHistory() {
+  //Clear old buttons
   searchHistoryEl.innerHTML = '';
   //Set var to the parsed json, if it is empty add empty array.
   let storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
@@ -207,10 +208,10 @@ function displayWeatherResults(fiveDays) {
   daysForecastEl.innerHTML = card;
 }
 
+//Event Delegation for btns to grab data attr for city name and trigger search
 function searchHistoryBtn(e) {
   let historyCity = e.target.getAttribute('data-city-name');
   if (historyCity) {
-    addToLocalStorage(historyCity);
     //Fetch current weather using city name
     getCurrentWeather(historyCity);
     //Get Lat and Long to use for another api fetch url
@@ -218,8 +219,9 @@ function searchHistoryBtn(e) {
   }
 }
 
-// add event listener to form to grab input value
+// add event listener for form submission
 form.addEventListener('submit', grabUserInput);
+// add event listener for search history btns
 searchHistoryEl.addEventListener('click', searchHistoryBtn);
 
 function init() {
