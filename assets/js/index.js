@@ -1,5 +1,3 @@
-console.log(new Date().toLocaleDateString());
-
 //Selectors
 const input = document.getElementById('js-input-val');
 const form = document.getElementById('js-search-form');
@@ -59,30 +57,6 @@ function addToLocalStorage(cityName) {
 }
 
 ///////// Get Information Functions ////////////
-// Convert User's city name to coordinates for latitude and longitude
-function getCoordinates(cityName) {
-  let apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
-
-  fetch(apiUrl)
-    .then(function (response) {
-      //if response its success, convert it to json and pass the data to the next function
-      if (response.ok) {
-        response.json().then(function (data) {
-          JSON.stringify(data);
-          getWeatherForNext5Days(data);
-        });
-      } else {
-        //if it is a unsuccessful response
-        alert(
-          'Error: ' + response.statusText + '\nPlease enter a vaild city name'
-        );
-      }
-    })
-    .catch(function (error) {
-      alert('Unable to get weather info');
-    });
-}
-
 //get Today's Weather
 function getCurrentWeather(cityName) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
@@ -97,6 +71,30 @@ function getCurrentWeather(cityName) {
 
           //Add to local Storage obj
           addToLocalStorage(cityName);
+        });
+      } else {
+        //if it is a unsuccessful response
+        alert(
+          'Error: ' + response.statusText + '\nPlease enter a vaild city name'
+        );
+      }
+    })
+    .catch(function (error) {
+      alert('Unable to get weather info');
+    });
+}
+
+// Convert User's city name to coordinates for latitude and longitude
+function getCoordinates(cityName) {
+  let apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
+
+  fetch(apiUrl)
+    .then(function (response) {
+      //if response its success, convert it to json and pass the data to the next function
+      if (response.ok) {
+        response.json().then(function (data) {
+          JSON.stringify(data);
+          getWeatherForNext5Days(data);
         });
       } else {
         //if it is a unsuccessful response
@@ -166,7 +164,7 @@ function displaySearchHistory() {
   //Loop thru in city to create btn
   storedHistory.forEach((city) => {
     let cityBtn = `
-    <button data-city-name="${city.cityName}" class="bg-indigo-600 hover:bg-blue-600 text-white font-bold mb-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline grow capitalize"     type="buttonblock">
+    <button data-city-name="${city.cityName}" class="bg-indigo-600 hover:bg-blue-600 text-white font-bold mb-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline grow capitalize" type="buttonblock">
            ${city.cityName}
     </button>`;
 
@@ -182,7 +180,7 @@ function displayCurrentDay(today) {
     <h2>${new Date().toLocaleDateString()}</h2>
     <img src="https://openweathermap.org/img/wn/${
       today.weather[0].icon
-    }.png" alt="Today's weather icon" />
+    }@2x.png" alt="Today's weather icon" />
     <h3 class="font-bold text-2xl">${today.name}</h3>
     <p>Temp: ${today.main.temp}</p>
     <p>Wind: ${today.wind.speed} MPH</p>
