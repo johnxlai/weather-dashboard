@@ -1,3 +1,24 @@
+var utc = require('dayjs/plugin/utc');
+var timezone = require('dayjs/plugin/timezone'); // dependent on utc plugin
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+const timestamp = '2014-06-01 12:00';
+const tz = 'America/New_York';
+
+const dayjsLocal = dayjs(timestamp); //assumes UTC
+//dayjsLocal.toISOString() -> 2014-06-01T12:00:00.000Z
+//dayjsLocal.format('YYYY-MM-DDTHH:mm:ss') -> 2014-06-01T12:00:00
+
+const dayjsAmerica = dayjsLocal.tz(tz); //existing time treated as UTC
+//dayjsAmerica.toISOString() -> 2014-06-01T12:00:00.000Z
+//dayjsAmerica.format('YYYY-MM-DDTHH:mm:ss') -> 2014-06-01T08:00:00
+
+const dayjsAmericaKeep = dayjsLocal.tz(tz, true); //existing time treated as local time
+//dayjsAmericaKeep.toISOString() -> 2014-06-01T16:00:00.000Z
+//dayjsAmericaKeep.format('YYYY-MM-DDTHH:mm:ss') -> 2014-06-01T12:00:00
+
 //Selectors
 const input = document.getElementById('js-input-val');
 const form = document.getElementById('js-search-form');
@@ -183,7 +204,7 @@ function displayCurrentDay(today) {
           <div
             class="row-span-full col-span-2 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center relative">
             <h3 class="font-bold text-2xl relative -bottom-10">
-            ${today.name}</h3>
+            ${today.name}, ${today.sys.country}</h3>
             <img src="https://openweathermap.org/img/wn/${
               today.weather[0].icon
             }@4x.png" alt="Today's weather icon" />
@@ -192,18 +213,27 @@ function displayCurrentDay(today) {
             class="col-span-2 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
             <span class="text-xs">Date:</span>
             <h4 class="">${new Date().toLocaleDateString()}</h4>
+            <h4 class="">${dayjs(today.sys.sunrise)}</h4>
+            <h4 class="">${dayjs
+              .unix(today.sys.sunrise)
+              .tz('Canada/Toronto')
+              .format()}</h4>
           </div>
           <div
             class="col-span-1 row-span-2 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
-            <span class="text-xs">Temp: </span>
-            <span class="text-2xl md:text-3xl lg:text-4xl">${
+            <span class="text-xs">Temp</span>
+            <span class="text-2xl md:text-3xl lg:text-4xl mb-5">${
               today.main.temp
+            }</span>
+            <span class="text-xs">Feels Like</span>
+            <span class="text-2xl md:text-3xl lg:text-4xl">${
+              today.main.feels_like
             }</span>
           </div>
           <div
             class="col-span-1 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
             <span class="text-xs">Wind:</span>
-            <span class="text-3xl my-2">${today.wind.speed}</span>
+            <span class="text-3xl my-1">${today.wind.speed}</span>
             <span class="text-xs">MPH</span>
           </div>
 
@@ -220,12 +250,13 @@ function displayCurrentDay(today) {
           <div
             class="col-span-1 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
             <span class="text-xs mb-1">Humidity </span>
-            <span class="text-3xl font-bold">76%</span>
+            <span class="text-3xl font-bold">${today.main.humidity}%</span>
           </div>
           <div
             class="col-span-1 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
-            <span class="text-xs mb-1">Humidity </span>
-            <span class="text-3xl font-bold">${today.main.humidity}%</span>
+            <span class="text-xs">Wind:</span>
+            <span class="text-3xl my-1">${today.wind.deg}</span>
+            <span class="text-xs">Degree</span>
           </div>
         </div>
     `;
