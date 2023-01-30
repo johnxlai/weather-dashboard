@@ -1,24 +1,3 @@
-var utc = require('dayjs/plugin/utc');
-var timezone = require('dayjs/plugin/timezone'); // dependent on utc plugin
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
-
-const timestamp = '2014-06-01 12:00';
-const tz = 'America/New_York';
-
-const dayjsLocal = dayjs(timestamp); //assumes UTC
-//dayjsLocal.toISOString() -> 2014-06-01T12:00:00.000Z
-//dayjsLocal.format('YYYY-MM-DDTHH:mm:ss') -> 2014-06-01T12:00:00
-
-const dayjsAmerica = dayjsLocal.tz(tz); //existing time treated as UTC
-//dayjsAmerica.toISOString() -> 2014-06-01T12:00:00.000Z
-//dayjsAmerica.format('YYYY-MM-DDTHH:mm:ss') -> 2014-06-01T08:00:00
-
-const dayjsAmericaKeep = dayjsLocal.tz(tz, true); //existing time treated as local time
-//dayjsAmericaKeep.toISOString() -> 2014-06-01T16:00:00.000Z
-//dayjsAmericaKeep.format('YYYY-MM-DDTHH:mm:ss') -> 2014-06-01T12:00:00
-
 //Selectors
 const input = document.getElementById('js-input-val');
 const form = document.getElementById('js-search-form');
@@ -211,22 +190,18 @@ function displayCurrentDay(today) {
           </div>
           <div
             class="col-span-2 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
-            <span class="text-xs">Date:</span>
-            <h4 class="">${new Date().toLocaleDateString()}</h4>
-            <h4 class="">${dayjs(today.sys.sunrise)}</h4>
-            <h4 class="">${dayjs
-              .unix(today.sys.sunrise)
-              .tz('Canada/Toronto')
-              .format()}</h4>
+            <h4 class="mb-2"><span class="text-xs mr-1">Date:</span>${new Date().toLocaleString()}</h4>
+            <div>
+              <span class="text-xs mr-1">lon:</span>${today.coord.lon}
+              <p><span class="text-xs mr-1">lat:</span>${today.coord.lat}</p>
+            </div>
           </div>
           <div
             class="col-span-1 row-span-2 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
             <span class="text-xs">Temp</span>
-            <span class="text-2xl md:text-3xl lg:text-4xl mb-5">${
-              today.main.temp
-            }</span>
+            <span class="md:text-2xl xl:text-4xl mb-5">${today.main.temp}</span>
             <span class="text-xs">Feels Like</span>
-            <span class="text-2xl md:text-3xl lg:text-4xl">${
+            <span class="md:text-2xl xl:text-4xl">${
               today.main.feels_like
             }</span>
           </div>
@@ -240,11 +215,11 @@ function displayCurrentDay(today) {
           <div class="col-span-1 grid grid-rows-2 gap-y-4">
             <div class="bg-black/50 text-gray-300 rounded p-3 text-center">
               <span class="text-xs">Sunset: </span>
-              76%
+              <span>${today.sys.sunset}</span>
             </div>
             <div class="bg-black/50 text-gray-300 rounded p-3 text-center">
-              <span class="text-xs"> Sunrise: </span>
-              76%
+              <span class="text-xs">Sunrise: </span>
+              <span>${today.sys.sunrise}</span>
             </div>
           </div>
           <div
