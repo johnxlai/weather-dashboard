@@ -180,7 +180,7 @@ function displayCurrentDay(today) {
     <h2>${new Date().toLocaleDateString()}</h2>
     <img src="https://openweathermap.org/img/wn/${
       today.weather[0].icon
-    }@2x.png" alt="Today's weather icon" />
+    }@4x.png" alt="Today's weather icon" />
     <h3 class="font-bold text-2xl">${today.name}</h3>
     <p>Temp: ${today.main.temp}</p>
     <p>Wind: ${today.wind.speed} MPH</p>
@@ -200,7 +200,7 @@ function displayNextFiveDays(fiveDays) {
 
     card += `
      <div class="bg-indigo-700 text-white col-span-full md:col-span-3 lg:col-span-1 p-3 rounded">
-      <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}.png" alt="" />
+      <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@4x.png" alt="" />
       <h3>${date}</h3>
       <p>Temp: ${day.main.temp}</p>
       <p>Wind: ${day.wind.speed} MPH</p>
