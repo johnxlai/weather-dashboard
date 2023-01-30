@@ -194,17 +194,28 @@ function displayNextFiveDays(fiveDays) {
 
   fiveDays.forEach((day) => {
     //Remove time form day.dt_text, just grabbing the day
+    console.log(day.dt_txt);
     let date = day.dt_txt.split(' ')[0];
     //Use Day.js to format date
-    date = dayjs(date).format('MM/DD/YYYY');
+    date = dayjs(date).format('MMM DD,YYYY');
 
     card += `
-     <div class="bg-indigo-700 text-white col-span-full md:col-span-3 lg:col-span-1 p-3 rounded">
-      <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@4x.png" alt="" />
-      <h3>${date}</h3>
-      <p>Temp: ${day.main.temp}</p>
-      <p>Wind: ${day.wind.speed} MPH</p>
-      <p>Humidtiy: ${day.main.humidity} %</p>
+     <div class="bg-black/50 text-gray-300 col-span-full md:col-span-3 lg:col-span-2 p-3 rounded  flex items-center justify-between">
+      <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}.png" alt="" />
+      <h6>${date}</h6>
+      <p class="flex flex-col items-center">
+        <span class="text-xs">Temp</span>
+          ${day.main.temp}
+      </p>
+      <p class="flex flex-col items-center">
+        <span class="text-xs">wind</span>
+          ${day.wind.speed}
+        <span class="text-xs">mph</span>
+      </p>
+      <p class="flex flex-col items-center">
+        <span class="text-xs">Humidtiy</span>
+        ${day.main.humidity}
+      </p>
      </div>
     `;
   });
