@@ -175,16 +175,59 @@ function displaySearchHistory() {
 
 //display todays weather details
 function displayCurrentDay(today) {
+  console.log(today);
   //display today's day with vanilla js and breaking down obj to show details
   weatherResultsEl.firstElementChild.innerHTML = `
-    <h2>${new Date().toLocaleDateString()}</h2>
-    <img src="https://openweathermap.org/img/wn/${
-      today.weather[0].icon
-    }@4x.png" alt="Today's weather icon" />
-    <h3 class="font-bold text-2xl">${today.name}</h3>
-    <p>Temp: ${today.main.temp}</p>
-    <p>Wind: ${today.wind.speed} MPH</p>
-    <p>Humidity: ${today.main.humidity}%</p>
+        <div
+          class="col-span-full text-white grid grid-cols-1 md:grid-cols-6 grid-rows-2 gap-4">
+          <div
+            class="row-span-full col-span-2 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center relative">
+            <h3 class="font-bold text-2xl relative -bottom-10">
+            ${today.name}</h3>
+            <img src="https://openweathermap.org/img/wn/${
+              today.weather[0].icon
+            }@4x.png" alt="Today's weather icon" />
+          </div>
+          <div
+            class="col-span-2 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
+            <span class="text-xs">Date:</span>
+            <h4 class="">${new Date().toLocaleDateString()}</h4>
+          </div>
+          <div
+            class="col-span-1 row-span-2 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
+            <span class="text-xs">Temp: </span>
+            <span class="text-2xl md:text-3xl lg:text-4xl">${
+              today.main.temp
+            }</span>
+          </div>
+          <div
+            class="col-span-1 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
+            <span class="text-xs">Wind:</span>
+            <span class="text-3xl my-2">${today.wind.speed}</span>
+            <span class="text-xs">MPH</span>
+          </div>
+
+          <div class="col-span-1 grid grid-rows-2 gap-y-4">
+            <div class="bg-black/50 text-gray-300 rounded p-3 text-center">
+              <span class="text-xs">Sunset: </span>
+              76%
+            </div>
+            <div class="bg-black/50 text-gray-300 rounded p-3 text-center">
+              <span class="text-xs"> Sunrise: </span>
+              76%
+            </div>
+          </div>
+          <div
+            class="col-span-1 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
+            <span class="text-xs mb-1">Humidity </span>
+            <span class="text-3xl font-bold">76%</span>
+          </div>
+          <div
+            class="col-span-1 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
+            <span class="text-xs mb-1">Humidity </span>
+            <span class="text-3xl font-bold">${today.main.humidity}%</span>
+          </div>
+        </div>
     `;
 }
 
