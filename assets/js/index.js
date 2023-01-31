@@ -249,7 +249,7 @@ function displayNextFiveDays(fiveDays) {
     date = dayjs(date).format('MMM DD,YYYY');
 
     card += `
-     <div class="bg-black/50 text-gray-300 col-span-full md:col-span-3 lg:col-span-2 p-3 rounded  flex items-center justify-between">
+     <div class="bg-black/50 text-gray-300 col-span-full lg:col-span-1 p-3 rounded flex items-center justify-between">
       <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}.png" alt="" />
       <h6>${date}</h6>
       <p class="flex flex-col items-center">
