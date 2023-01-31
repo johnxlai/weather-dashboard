@@ -1,6 +1,7 @@
 //Selectors
 const input = document.getElementById('js-input-val');
 const form = document.getElementById('js-search-form');
+const searchCityEl = document.getElementById('search-city');
 const searchHistoryEl = document.getElementById('js-search-history');
 const weatherResultsEl = document.getElementById('js-weather-results');
 const hidden5daysLabel = weatherResultsEl.querySelector('.hidden');
@@ -153,6 +154,12 @@ function reduceToFiveDays(data) {
 }
 
 ///////// DISPLAY FUNCTIONS ///////////////
+//Html elements are hidden on load, show once there is after first result
+function displaySection() {
+  searchCityEl.classList.add('lg:basis-1/3');
+  form.classList.add('lg:rounded-tr-none');
+  weatherResultsEl.classList.remove('hidden');
+}
 
 // Display local storage to show history of cities names
 function displaySearchHistory() {
@@ -175,6 +182,8 @@ function displaySearchHistory() {
 
 //display todays weather details
 function displayCurrentDay(today) {
+  //display results section in main if call is successful
+  displaySection();
   //display today's day with vanilla js and breaking down obj to show details
   weatherResultsEl.firstElementChild.innerHTML = `
         <div

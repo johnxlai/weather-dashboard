@@ -1,11 +1,12 @@
-# John Lai's Boilerplate
+# Weather Forecast App
 # User Story
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
+* As a traveler I want to see the weather outlook for multiple cities so that I can plan a trip accordingly.
 
 # Description
-* This is a boilerplate
+* This is a weather forecast app, this project fetches weather data from the open weather map api (api.openweathermap.org). It provides current day and 5 days forcast! The search history its stored in the local storage.
+
+* This project uses tailwind css, google font and day js
+* Enjoy!
 
 
 # Screenshot
@@ -13,15 +14,3 @@ SO THAT I can plan a trip accordingly
 
 # Live Site
 https://johnxlai.github.io/weather-dashboard/
-
-
-# Acceptance Criteria
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
