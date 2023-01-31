@@ -175,7 +175,6 @@ function displaySearchHistory() {
 
 //display todays weather details
 function displayCurrentDay(today) {
-  console.log(today);
   //display today's day with vanilla js and breaking down obj to show details
   weatherResultsEl.firstElementChild.innerHTML = `
         <div
@@ -243,7 +242,6 @@ function displayNextFiveDays(fiveDays) {
 
   fiveDays.forEach((day) => {
     //Remove time form day.dt_text, just grabbing the day
-    console.log(day.dt_txt);
     let date = day.dt_txt.split(' ')[0];
     //Use Day.js to format date
     date = dayjs(date).format('MMM DD,YYYY');

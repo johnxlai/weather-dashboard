@@ -9,9 +9,10 @@ SO THAT I can plan a trip accordingly
 
 
 # Screenshot
-<!-- ![Final Website](assets/img/john-lai-website-mock-up.png) -->
+![Final Website](assets/image/weather-forecast-app.png)
 
 # Live Site
+https://johnxlai.github.io/weather-dashboard/
 
 
 # Acceptance Criteria
