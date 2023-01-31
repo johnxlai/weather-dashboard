@@ -209,11 +209,13 @@ function displayCurrentDay(today) {
           <div
             class="col-span-1 row-span-2 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
             <span class="text-xs">Temp</span>
-            <span class="md:text-2xl xl:text-4xl mb-5">${today.main.temp}</span>
+            <span class="md:text-2xl xl:text-3xl mb-5">${
+              today.main.temp
+            }&deg;</span>
             <span class="text-xs">Feels Like</span>
-            <span class="md:text-2xl xl:text-4xl">${
+            <span class="md:text-2xl xl:text-3xl">${
               today.main.feels_like
-            }</span>
+            }&deg;</span>
           </div>
           <div
             class="col-span-1 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
@@ -264,7 +266,7 @@ function displayNextFiveDays(fiveDays) {
       <div class="flex justify-around items-center  md:grow-2">
         <p class="flex flex-col items-center">
           <span class="text-xs">Temp</span>
-            ${day.main.temp}
+            ${day.main.temp}&deg;
         </p>
         <p class="flex flex-col items-center mx-8">
           <span class="text-xs">wind</span>
