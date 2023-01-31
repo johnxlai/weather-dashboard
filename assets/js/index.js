@@ -190,7 +190,9 @@ function displayCurrentDay(today) {
           </div>
           <div
             class="col-span-2 bg-black/50 text-gray-300 rounded p-3 flex flex-col justify-center items-center">
-            <h4 class="mb-2"><span class="text-xs mr-1">Date:</span>${new Date().toLocaleString()}</h4>
+            <h4 class="mb-2"><span class="text-xs mr-1">Date:</span>${dayjs().format(
+              'MMM D,YYYY'
+            )}</h4>
             <div>
               <span class="text-xs mr-1">lon:</span>${today.coord.lon}
               <p><span class="text-xs mr-1">lat:</span>${today.coord.lat}</p>
