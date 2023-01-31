@@ -214,12 +214,12 @@ function displayCurrentDay(today) {
 
           <div class="col-span-1 grid grid-rows-2 gap-y-4">
             <div class="bg-black/50 text-gray-300 rounded p-3 text-center">
-              <span class="text-xs">Sunset: </span>
-              <span>${today.sys.sunset}</span>
+              <span class="text-xs capitalize">${today.weather[0].main}</span>
             </div>
             <div class="bg-black/50 text-gray-300 rounded p-3 text-center">
-              <span class="text-xs">Sunrise: </span>
-              <span>${today.sys.sunrise}</span>
+              <span class="text-xs capitalize">${
+                today.weather[0].description
+              }</span>
             </div>
           </div>
           <div
@@ -266,7 +266,7 @@ function displayNextFiveDays(fiveDays) {
         </p>
         <p class="flex flex-col items-center">
           <span class="text-xs">Humdity</span>
-          ${day.main.humidity}
+          ${day.main.humidity}%
         </p>
       </div>
     </div>
