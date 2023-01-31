@@ -249,23 +249,23 @@ function displayNextFiveDays(fiveDays) {
     date = dayjs(date).format('MMM DD,YYYY');
 
     card += `
-     <div class="bg-black/50 text-gray-300 col-span-full md:col-span-2 lg:col-span-1 p-3 rounded flex flex-col items-center  md:flex-row md:flex-wrap md:justify-around">
-      <div class="flex flex-col justify-center items-center mb-4 md:flex-row md:mb-0">
+     <div class="bg-black/50 text-gray-300 col-span-full md:col-span-1 p-3 rounded flex flex-col items-center  md:flex-row md:flex-wrap md:justify-around">
+      <div class="flex flex-col justify-center items-center mb-4 md:flex-row md:mb-0 md:grow-1">
         <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}.png" alt="" />
         <h6>${date}</h6>
       </div>
-      <div class="flex justify-around items-center gap-4">
+      <div class="flex justify-around items-center  md:grow-2">
         <p class="flex flex-col items-center">
           <span class="text-xs">Temp</span>
             ${day.main.temp}
         </p>
-        <p class="flex flex-col items-center">
+        <p class="flex flex-col items-center mx-8">
           <span class="text-xs">wind</span>
             ${day.wind.speed}
           <span class="text-xs">mph</span>
         </p>
         <p class="flex flex-col items-center">
-          <span class="text-xs">Humidtiy</span>
+          <span class="text-xs">Humdity</span>
           ${day.main.humidity}
         </p>
       </div>
