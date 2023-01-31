@@ -219,9 +219,7 @@ function displayCurrentDay(today) {
               <span class="text-xs capitalize">${today.weather[0].main}</span>
             </div>
             <div class="bg-black/50 text-gray-300 rounded p-3 text-center">
-              <span class="text-xs capitalize">${
-                today.weather[0].description
-              }</span>
+              <span class="text-xs capitalize">Gust: ${today.wind.gust}</span>
             </div>
           </div>
           <div
